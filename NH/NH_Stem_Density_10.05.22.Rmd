@@ -1,0 +1,175 @@
+---
+title: "NH Stem Density"
+author: "Carrie Fearer"
+date: "2022-10-05"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+
+#1997 NH Data
+#Stem Density adjusted to reflect proper trees/acre - 10.04.22
+data <- read.csv("/Users/petlover6c/UNH_PostDoc/BBD_FIA/NH/NH_1997.csv", header = TRUE)
+
+#American Beech
+NH_B_1997 <- ggplot(data, aes(x=Size_Class_cm, y=Beech_LN_Stem_Density)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color = "black") +
+  labs(x="DBH (cm)", y="log(trees/ha)") +
+  ggtitle("NH American Beech Stem Density in 1997") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_x_continuous(breaks=seq(0,100, 20)) +
+  scale_y_continuous(breaks=seq(-8,8,2), limits=c(-8,8))
+NH_B_1997
+
+line <- lm(formula = Beech_LN_Stem_Density ~ Size_Class_cm, data=data)
+summary(line)
+
+#Sugar Maple
+NH_SM_1997 <- ggplot(data, aes(x=Size_Class_cm, y=SM_LN_Stem_Density)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color = "black") +
+  labs(x="DBH (cm)", y="log(trees/ha)") +
+  ggtitle("NH Sugar Maple Stem Density in 1997") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_x_continuous(breaks=seq(0,100,20)) +
+  scale_y_continuous(breaks=seq(-8,8,2), limits=c(-8,8))
+NH_SM_1997
+
+line <- lm(formula = SM_LN_Stem_Density ~ Size_Class_cm, data=data)
+summary(line)
+
+#All Trees
+NH_All_1997 <- ggplot(data, aes(x=Size_Class_cm, y=All_LN_Stem_Density)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color = "black") +
+  labs(x="Size Class (cm)", y="log(trees/ha)") +
+  ggtitle("NH All Species Stem Density in 1997") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_x_continuous(breaks=seq(0,100,20)) +
+  scale_y_continuous(breaks=seq(-8,8,2), limits=c(-8,8))
+NH_All_1997
+
+line <- lm(formula = All_LN_Stem_Density ~ Size_Class_cm, data=data)
+summary(line)
+
+#Checking requirements (i.e. normality, heterosc., linearity)
+par(mfrow=c(2,2))
+plot(line)
+hist(data$Size_Class_cm)
+plot(All_LN_Stem_Density ~ Size_Class_cm, data=data)
+
+
+#2005 NH Data
+data <- read.csv("/Users/petlover6c/UNH_PostDoc/BBD_FIA/NH/NH_2005.csv", header = TRUE)
+
+#American Beech
+NH_B_2005 <- ggplot(data, aes(x=Size_Class_cm, y=Beech_LN_Stem_Density)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color = "black") +
+  labs(x="DBH (cm)", y="log(trees/ha)") +
+  ggtitle("NH American Beech Stem Density in 2005") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_x_continuous(breaks=seq(0,100, 20)) +
+  scale_y_continuous(breaks=seq(-8,8,2), limits=c(-8,8))
+NH_B_2005
+
+line <- lm(formula = Beech_LN_Stem_Density ~ Size_Class_cm, data=data)
+summary(line)
+
+#Sugar Maple
+NH_SM_2005 <- ggplot(data, aes(x=Size_Class_cm, y=SM_LN_Stem_Density)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color = "black") +
+  labs(x="DBH (cm)", y="log(trees/ha)") +
+  ggtitle("NH Sugar Maple Stem Density in 2005") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_x_continuous(breaks=seq(0,100,20)) +
+  scale_y_continuous(breaks=seq(-8,8,2), limits=c(-8,8))
+NH_SM_2005
+
+line <- lm(formula = SM_LN_Stem_Density ~ Size_Class_cm, data=data)
+summary(line)
+
+#All Trees
+NH_All_2005 <- ggplot(data, aes(x=Size_Class_cm, y=All_LN_Stem_Density)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color = "black") +
+  labs(x="Size Class (cm)", y="log(trees/ha)") +
+  ggtitle("NH All Species Stem Density in 2005") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_x_continuous(breaks=seq(0,100,20)) +
+  scale_y_continuous(breaks=seq(-8,8,2), limits=c(-8,8))
+NH_All_2005
+
+line <- lm(formula = All_LN_Stem_Density ~ Size_Class_cm, data=data)
+summary(line)
+
+
+#2019 NH Data
+data <- read.csv("/Users/petlover6c/UNH_PostDoc/BBD_FIA/NH/NH_2019.csv", header = TRUE)
+
+#American Beech
+NH_B_2019 <- ggplot(data, aes(x=Size_Class_cm, y=Beech_LN_Stem_Density)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color = "black") +
+  labs(x="DBH (cm)", y="log(trees/ha)") +
+  ggtitle("NH American Beech Stem Density in 2019") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_x_continuous(breaks=seq(0,100, 20)) +
+  scale_y_continuous(breaks=seq(-8,8,2), limits=c(-8,8))
+NH_B_2019
+
+line <- lm(formula = Beech_LN_Stem_Density ~ Size_Class_cm, data=data)
+summary(line)
+
+#Sugar Maple
+NH_SM_2019 <- ggplot(data, aes(x=Size_Class_cm, y=SM_LN_Stem_Density)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color = "black") +
+  labs(x="DBH (cm)", y="log(trees/ha)") +
+  ggtitle("NH Sugar Maple Stem Density in 2019") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_x_continuous(breaks=seq(0,100,20)) +
+  scale_y_continuous(breaks=seq(-8,8,2), limits=c(-8,8))
+NH_SM_2019
+
+line <- lm(formula = SM_LN_Stem_Density ~ Size_Class_cm, data=data)
+summary(line)
+
+#All Trees
+NH_All_2019 <- ggplot(data, aes(x=Size_Class_cm, y=All_LN_Stem_Density)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color = "black") +
+  labs(x="Size Class (cm)", y="log(trees/ha)") +
+  ggtitle("NH All Species Stem Density in 2019") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_x_continuous(breaks=seq(0,100,20)) +
+  scale_y_continuous(breaks=seq(-8,8,2), limits=c(-8,8))
+NH_All_2019
+
+line <- lm(formula = All_LN_Stem_Density ~ Size_Class_cm, data=data)
+summary(line)
+
+#Combining All NH Plots
+library("ggpubr")
+NHplots <- list(NH_B_1997, NH_B_2005, NH_B_2019, NH_SM_1997, NH_SM_2005, NH_SM_2019, NH_All_1997, NH_All_2005, NH_All_2019) #let's assume you have 4 plots, you can expand or reduce this list
+
+NHp <- ggarrange(plotlist = NHplots, #this is the list you defined above
+               ncol = 3, nrow = 3, #this defines the number of columns and rows. For example, if you have 4 plots and you want to arrange them in a 2x2 grid, you set this number to 2 and 2
+               align = "hv", #this is the alignment method. Leave it this way
+               widths = 1, heights = 1, #this is the proportion of each plot, you need to modify this if you want your plots to have different proportion. In you case, leave it as it is.
+               #labels= c("(A)","(B)"), #here you can specify a label for each plot, you can write whatever you like. The order will follow the one you specify in myplots
+               common.legend = F) #this can be TRUE or FALSE depending if you want a common lenged for you graphs or not
+NHp
+```
