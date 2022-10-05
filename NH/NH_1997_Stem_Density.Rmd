@@ -1,0 +1,56 @@
+---
+title: "NH 1997 Stem Density"
+author: "Carrie Fearer"
+date: "2022-09-30"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+
+#1997 NH Data
+data <- read.csv("/Users/petlover6c/UNH_PostDoc/BBD FIA/NH/NH_1997.csv", header = TRUE)
+
+#American Beech
+ggplot(data, aes(x=Size_Class_cm, y=Beech_LN_Stem_Density)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color = "black") +
+  labs(x="DBH (cm)", y="log(trees/ha)") +
+  ggtitle("NH American Beech Stem Density in 1997") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_x_continuous(breaks=seq(0,100,20)) +
+  scale_y_continuous(breaks=seq(0,24,2))
+
+line <- lm(formula = Beech_LN_Stem_Density ~ Size_Class_cm, data=data)
+summary(line)
+
+#Sugar Maple
+ggplot(data, aes(x=Size_Class_cm, y=SM_LN_Stem_Density)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color = "black") +
+  labs(x="DBH (cm)", y="log(trees/ha)") +
+  ggtitle("NH Sugar Maple Stem Density in 1997") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_x_continuous(breaks=seq(0,100,20)) +
+  scale_y_continuous(breaks=seq(0,24,2))
+
+line <- lm(formula = SM_LN_Stem_Density ~ Size_Class_cm, data=data)
+summary(line)
+
+#All Trees
+ggplot(data, aes(x=Size_Class_cm, y=All_LN_Stem_Density)) + 
+  geom_point() +
+  geom_smooth(method=lm, se=FALSE, color = "black") +
+  labs(x="Size Class (cm)", y="log(trees/ha)") +
+  ggtitle("NH All Tree Stem Density in 1997") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust=0.5)) +
+  scale_x_continuous(breaks=seq(0,100,20)) +
+  scale_y_continuous(breaks=seq(0,30,2))
+
+line <- lm(formula = All_LN_Stem_Density ~ Size_Class_cm, data=data)
+summary(line)
+
+```
